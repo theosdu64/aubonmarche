@@ -6,3 +6,4 @@ class Client:
 		self.firstname = firstname
 		self.lastname = lastname
 		self.cart = []
+		self.client = []

@@ -14,12 +14,12 @@ class Shop:
             )
 
 store = Shop()
-poire = store.stock['Poire']
-print(poire.name)     
-print(poire.prix)      
-print(poire.stock)     
-print(poire.unite)     
-print(poire.category)  
+# poire = store.stock['Poire']
+# print(poire.name)     
+# print(poire.prix)      
+# print(poire.stock)     
+# print(poire.unite)     
+# print(poire.category)  
 
-print('-' * 60)
-print(store.stock['Poire'])
+# print('-' * 60)
+# print(store.stock['Poire'])
