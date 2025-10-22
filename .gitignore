@@ -1,0 +1,27 @@
+# Fichiers Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environnements virtuels
+venv/
+env/
+.venv/
+.env/
+
+# Fichiers de logs
+*.log
+
+# IDEs
+.idea/
+.vscode/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Pytest
+.pytest_cache/
+
+# PDM, Poetry, etc. (si tu les utilises)
+__pypackages__/
