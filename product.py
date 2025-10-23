@@ -6,6 +6,11 @@ class Product:
 		self.unite = unite
 		self.category = category
 
+	def update_stock(self, qty):
+		if qty > self.stock:
+			raise ValueError('Quantité dans le stock insuffisante')
+		self.stock -= qty
+
 	def __repr__(self):
 		return (f"name={self.name}, prix={self.prix}€, stock={self.stock} {self.unite}, "
 				f"category={self.category})")

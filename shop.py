@@ -13,13 +13,13 @@ class Shop:
                 category=info['categorie']
             )
 
-store = Shop()
-# poire = store.stock['Poire']
-# print(poire.name)     
-# print(poire.prix)      
-# print(poire.stock)     
-# print(poire.unite)     
-# print(poire.category)  
-
-# print('-' * 60)
-# print(store.stock['Poire'])
+    def buy_product(self, product_name, qty):
+        if product_name not in self.stock:
+            raise ValueError('Produit inexistant')
+        product = self.stock[product_name]
+        price = product.prix * qty
+        product.update_stock(qty)
+        return price
+    
+shop = Shop()     
+print(shop.buy_product('Poire', 1))
