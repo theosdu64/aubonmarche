@@ -33,18 +33,22 @@ class Shop:
 
 		for name, product in self.stock.items():
 			if product_category == product.category:
-				names.append(name)
+				names.append({'name' : name, 'stock' : product.stock})
 		return names
+	
 	def get_bilan(self):
-		bilan = self.tickets[0]
-		client = {}
-
-		for ticket in bilan:
-			client["name"] = ticket.name
-
-
+		price_bilan = 0
+		bilan = []
+		tickets = self.tickets
+		print(tickets)
+		for x in tickets:
+			for el in x:
+				print(el['prix'])
+				price_bilan += el['prix']
+		for i, ticket in enumerate(self.tickets, 1):
+			bilan.append(f"Commande n°{i}: {ticket}")	
+		for x in bilan:	
+			print(f'\n{x}')
+		print(f'Total  des commandes {price_bilan}')
 
 shop = Shop()     
-print(shop.buy_product('Poire', 1))
-get = shop.get_products_by_category("fruit")
-print(get)

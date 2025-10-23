@@ -13,7 +13,7 @@ def nav_question():
     if result.isdigit() and result != '3':
         res = int(result)
         return res
-    return False
+    return 3
  
 def ask_name():
     nom = input('Quel est votre nom ? ')
@@ -29,12 +29,14 @@ def product_category():
 
 def format_array(list_product):
     format_dict = {}
+    format_dict_test = {}
     for index, product in enumerate(list_product):
         format_dict[index + 1] = product
+        format_dict_test[index + 1] = product['name']
     print_line()
     print(format_dict)
     print_line()
-    return format_dict
+    return format_dict_test
 
 def choose_product(array_product): 
     number = int(input(f'Choisir entre 1 et {len(array_product)} : '))
@@ -54,9 +56,8 @@ def main():
         
         if numNav == 1:
             print("Bilan des commandes :")
-            for i, ticket in enumerate(shop.tickets, 1):
-                print(f"Commande n°{i}: {ticket}")
-                       
+            shop.get_bilan()
+            
         elif numNav == 2:
             if client is None:
                 client = ask_name()
@@ -74,9 +75,8 @@ def main():
                 print(poid)
                 choix.append(poid)
                 print(choix)
-                test = shop.buy_product(choix[0], choix[1])
-                print(test)
-                client.order.append({'prix': test, 'product': choix[0], 'unite': choix[1], 'name': client.firstname})
+                price = shop.buy_product(choix[0], choix[1])
+                client.order.append({'prix': price, 'product': choix[0], 'unite': choix[1], 'name': client.firstname})
                 print('client order')
                 print(client.order)
 
@@ -89,5 +89,13 @@ def main():
                     print("Commande enregistrée !")
                     print(shop.tickets)
                     client = None 
+        
+        elif numNav == 3:  
+            print("Fini")
+            continu = False  
+        
+        else:
+            print("Choix invalide, veuillez réessayer.")
 
-main()
+
+main()	
