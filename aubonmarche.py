@@ -13,7 +13,19 @@ def ask_name():
     nom = input('quel est votre nom')
     prenom = input('quel est votre prenom')
     Client(nom, prenom)
+    print((nom, prenom))
 
-# def main():
-#     while True
-#     ask_name()
+def product_category():
+    category = input('quel category de produit ? (1 : Legume, 2: Fruit)')
+    print(category)
+
+def main():
+    continu = True
+    while continu:
+        numNav = nav_question()
+        print(numNav)
+        if numNav == 2:
+            ask_name()
+            product_category()
+
+main()
