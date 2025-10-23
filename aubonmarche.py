@@ -1,25 +1,31 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 from client import Client
 from shop import Shop 
 
 shop = Shop()
 
+def print_line():
+    print('-' * 80)
+
 def nav_question():
-    result = input("Bilan ou Achetez ou Stoppez(1 ou 2 ou 3)" )
+    result = input("Bilan ou Achetez ou Stoppez(1 ou 2 ou 3) : ")
     if result.isdigit() and result != '3':
         res = int(result)
         return res 
     return False
  
 def ask_name():
-    nom = input('quel est votre nom')
-    prenom = input('quel est votre prenom')
-    Client(nom, prenom)
-    print((nom, prenom))
+    nom = input('Quel est votre nom ? ')
+    prenom = input('Quel est votre prénom ? ')
+    client = Client(prenom, nom)  # ✅ Crée et retourne le client
+    print(f"Bonjour {prenom} {nom}")
+    return client
 
 def product_category():
-    category = input('quel category de produit ? (1 : Legume, 2: Fruit)')
+    category = input('Quelle catégorie de produit ? (1: Légume, 2: Fruit) : ')
     print(category)
     return int(category)
 
@@ -27,9 +33,18 @@ def format_array(list_product):
     format_dict = {}
     for index, product in enumerate(list_product):
         format_dict[index + 1] = product  
+    print_line()
+    print(format_dict)
+    print_line()
     return format_dict
 
-# def choose_product 
+def choose_product(array_product): 
+    number = int(input(f'Choisir entre 1 et {len(array_product)} : '))
+    return number
+
+def choose_poid():
+    number = int(input('Choisir poids ou pièce : '))
+    return number
 
 def main():
     continu = True
@@ -37,22 +52,29 @@ def main():
         numNav = nav_question()
         print(numNav)
         if numNav == 2:
-            ask_name()
+            client = ask_name() 
             continu_buy_product = True
             while continu_buy_product:
-                test = shop.get_products_by_category(product_category())
-                format_array_product = format_array(test)
-                print(format_array_product)
-            # 'poid'
-            # 'compare'
-            # 'append dans client.order'
-            # 'si fini'
-            # ----------------------------------------
-            # 'on recupere client.order', Client
-            # 'addition de client.order' , Cleint
-            # cree la classe ticket : , Ticket
-            # classe Clent cree un list Ticket instancie, Ticket
-            # 'creer un ticket + total + nom, prenom' , Client
-            # 'bilan.append(ticket)'
-            # 'retour dans nav_question'
+                choix = []
+                product_categories = shop.get_products_by_category(product_category())
+                format_array_product = format_array(product_categories)
+                number_choose_product = choose_product(format_array_product)
+                choose_product_str = format_array_product[number_choose_product]
+                print(choose_product_str)
+                choix.append(choose_product_str)
+                poid = choose_poid()
+                print(poid)
+                choix.append(poid)
+                print(choix)
+                test = shop.buy_product(choix[0], choix[1])
+                print(test)
+                client.order.append({'prix': test, 'product': choix[0], 'unite': choix[1]})
+                print('client order')
+                print(client.order)
+                choix = []
+                
+                continuer = input("Continuer les achats ? (o/n) : ")
+                if continuer.lower() != 'o':
+                    continu_buy_product = False
+
 main()

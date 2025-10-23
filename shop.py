@@ -14,6 +14,7 @@ class Shop:
             )
 
     def buy_product(self, product_name, qty):
+        print('buy called')
         if product_name not in self.stock:
             raise ValueError('Produit inexistant')
         product = self.stock[product_name]
